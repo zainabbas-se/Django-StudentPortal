@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block start %}
+    <div class="container my-5">
+        <!-- Input Form Section For Update Registered Semester -->
+        <div class="card mb-4">
+            <div class="card-header" style="background-color: #6C757D; color: #ffffff; text-align: center;">
+                <h2 class="mb-0">Update Registered Semester</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+                                   value="{{ semester_queryset.name }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="department" class="form-label">Department</label>
+                            <input type="text" class="form-control" id="department" name="department"
+                                   placeholder="Enter your department" value="{{ semester_queryset.department }}" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="semester" class="form-label">Semester</label>
+                            <input type="text" class="form-control" id="semester" name="semester"
+                                   placeholder="Enter the semester" value="{{ semester_queryset.semester }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Enter your email" value="{{ semester_queryset.email }}" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="registration_date" class="form-label">Registration Date</label>
+                            <input type="date" class="form-control" id="registration_date" name="registration_date"
+                                  value="{{ semester_queryset.registration_date }}" required>
+                        </div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                        <label class="form-check-label" for="terms">
+                            Agree to terms and conditions
+                        </label>
+                        <div class="invalid-feedback">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                    <button class="btn btn-custom" type="submit">Update Semester</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Additional CSS for custom styling -->
+    <style>
+        /* Form Section */
+        .card {
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #6C757D;
+        }
+
+        .btn-custom {
+            background-color: #7393B3;
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-custom:hover {
+            background-color: #5a7d9c;
+        }
+    </style>
+
+{% endblock %}

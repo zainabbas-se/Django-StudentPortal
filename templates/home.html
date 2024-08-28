@@ -84,10 +84,11 @@
                                 <td>{{ semester.email }}</td>
                                 <td>{{ semester.registration_date }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-danger" title="Delete">
+                                    <a href="/delete_semester/{{ semester.id }}" class="btn btn-danger"
+                                       title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    <a href="#" class="btn btn-success"
+                                    <a href="/update_semester/{{semester.id}}" class="btn btn-success"
                                        title="Update">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -164,11 +165,11 @@
         }
 
         .btn {
-            margin-right: 5px; 
+            margin-right: 5px;
         }
 
         .btn:last-child {
-            margin-right: 0; 
+            margin-right: 0;
         }
     </style>
 
