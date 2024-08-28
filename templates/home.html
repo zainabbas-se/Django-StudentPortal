@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block start %}
+    <div class="container my-5">
+        <!-- Input Form Section For Semester Registration -->
+        <div class="card mb-4">
+            <div class="card-header" style="background-color: #6C757D; color: #ffffff; text-align: center;">
+                <h2 class="mb-0">Semester Registration</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+                                   required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="department" class="form-label">Department</label>
+                            <input type="text" class="form-control" id="department" name="department"
+                                   placeholder="Enter your department" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="semester" class="form-label">Semester</label>
+                            <input type="text" class="form-control" id="semester" name="semester"
+                                   placeholder="Enter the semester" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="registration_date" class="form-label">Registration Date</label>
+                            <input type="date" class="form-control" id="registration_date" name="registration_date"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="terms" name="terms" required>
+                        <label class="form-check-label" for="terms">
+                            Agree to terms and conditions
+                        </label>
+                        <div class="invalid-feedback">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                    <button class="btn btn-custom" type="submit">Register Semester</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Table Section For Registered Students -->
+        <div class="card">
+            <div class="card-header" style="background-color: #6C757D; color: #ffffff; text-align: center;">
+                <h2 class="mb-0">Registered Students</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Registration Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for semester in semester_registration %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ semester.name }}</td>
+                                <td>{{ semester.department }}</td>
+                                <td>{{ semester.semester }}</td>
+                                <td>{{ semester.email }}</td>
+                                <td>{{ semester.registration_date }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-danger" title="Delete">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-success"
+                                       title="Update">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">No data available.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional CSS for custom styling -->
+    <style>
+        /* Form Section */
+        .card {
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #6C757D;
+        }
+
+        .btn-custom {
+            background-color: #7393B3;
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-custom:hover {
+            background-color: #5a7d9c;
+        }
+
+        /* Table Styling */
+        .table {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .table thead th {
+            background-color: white;
+            color: black;
+            font-weight: bolder;
+        }
+
+        .table tbody tr {
+            background-color: white;
+        }
+
+        .table tbody tr:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .table.table-bordered, .table.table-bordered th, .table.table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .text-center {
+            text-align: center;
+            color: #7393B3;
+        }
+
+        .btn {
+            margin-right: 5px; 
+        }
+
+        .btn:last-child {
+            margin-right: 0; 
+        }
+    </style>
+
+{% endblock %}

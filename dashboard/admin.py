@@ -1,3 +1,4 @@
 from django.contrib import admin
+from dashboard.models import Semester
 
-# Register your models here.
+admin.site.register(Semester)
