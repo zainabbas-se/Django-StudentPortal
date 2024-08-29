@@ -1,0 +1,21 @@
+def login_page(request):
+    if request.method == 'POST':
+        data = request.POST
+        print(data)
+        username = data.get('username')
+        password = data.get('password')
+        print(username)
+
+        if not User.objects.filter(username=username).exists():
+            messages.info(request, "Username is not exist")
+            return redirect('login_page')
+
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            messages.info(request, "Invaild Username or Password")
+            return redirect('login_page')
+        else:
+            login(request, user)
+            return redirect('recipes')
+
+    return render(request, 'login.html', context={'page': 'Login'})
